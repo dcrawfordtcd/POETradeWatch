@@ -10,6 +10,7 @@ package poetradewatch;
  * @author Dan
  */
 import java.awt.Desktop;
+import java.awt.Toolkit;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.io.BufferedReader;
@@ -31,7 +32,6 @@ public class POETradeWatch {
 	public static void main(String[] args) throws FileNotFoundException {
 
 
-                
                 GUI gui = new GUI();
                 gui.setVisible(true);
                 
@@ -139,49 +139,56 @@ public class POETradeWatch {
   
                     
                 String result = "";
-                result = Boolean.toString(search(gui.jTextField1.getText()));
+                int temp = 0;
+                
+                result = Integer.toString(search(gui.jTextField1.getText()));
+                int oldFound = Integer.parseInt(gui.jButton1.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    Toolkit.getDefaultToolkit().beep();
+                }
                 gui.jButton1.setText(result);   
                 
-                                result = Boolean.toString(search(gui.jTextField3.getText()));
+                
+                                result = Integer.toString(search(gui.jTextField3.getText()));
                 gui.jButton2.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField5.getText()));
+                                result = Integer.toString(search(gui.jTextField5.getText()));
                 gui.jButton3.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField7.getText()));
+                                result = Integer.toString(search(gui.jTextField7.getText()));
                 gui.jButton4.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField9.getText()));
+                                result = Integer.toString(search(gui.jTextField9.getText()));
                 gui.jButton5.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField11.getText()));
+                                result = Integer.toString(search(gui.jTextField11.getText()));
                 gui.jButton6.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField13.getText()));
+                                result = Integer.toString(search(gui.jTextField13.getText()));
                 gui.jButton7.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField15.getText()));
+                                result = Integer.toString(search(gui.jTextField15.getText()));
                 gui.jButton8.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField17.getText()));
+                                result = Integer.toString(search(gui.jTextField17.getText()));
                 gui.jButton9.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField19.getText()));
+                                result = Integer.toString(search(gui.jTextField19.getText()));
                 gui.jButton10.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField21.getText()));
+                                result = Integer.toString(search(gui.jTextField21.getText()));
                 gui.jButton11.setText(result);
                 
-                                result = Boolean.toString(search(gui.jTextField23.getText()));
+                                result = Integer.toString(search(gui.jTextField23.getText()));
                 gui.jButton12.setText(result);
                 
                 }
 
 	}
 
-	public static boolean search(String hash){
+	public static int search(String hash){
 		URL url;
-		boolean found = false;
+		int found = 0;
                 if(hash.length() > 0)
 		try {
 			// get URL content
@@ -200,10 +207,16 @@ public class POETradeWatch {
 			String inputLine;		
 			while ((inputLine = br.readLine()) != null && !inputLine.contains("protip")) {
 				//System.out.println(inputLine);
-				if(inputLine.contains("result"))
-					resultsCount++;
-				if(resultsCount == 2)
-					found = true;
+                                
+                                if(inputLine.endsWith("results)")){
+                                    //System.out.println(inputLine);  
+                                
+                                    String[] split = inputLine.split(" ");
+                                
+                                    //System.out.println(split.length);
+                                    //System.out.println(split[4]);  
+                                    found = Integer.parseInt(split[4].substring(1));
+                                }
 			}
 			br.close();
 
