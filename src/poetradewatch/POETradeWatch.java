@@ -308,7 +308,7 @@ public class POETradeWatch {
 			while ((inputLine = br.readLine()) != null && !inputLine.contains("protip")) {
 				//System.out.println(inputLine);
                                 
-                                if(inputLine.endsWith("results)")){
+                                if(inputLine.endsWith("results)") || inputLine.endsWith("result)")){
                                     //System.out.println(inputLine);  
                                 
                                     String[] split = inputLine.split(" ");
