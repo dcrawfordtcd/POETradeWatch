@@ -22,6 +22,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 
 
@@ -29,8 +36,22 @@ public class POETradeWatch {
     
         int[] found = new int[12];
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws FileNotFoundException, MalformedURLException, LineUnavailableException, UnsupportedAudioFileException, IOException {
 
+            
+
+                Clip clip = AudioSystem.getClip();
+                // getAudioInputStream() also accepts a File or InputStream
+                File audioFile = new File("alert.wav");
+                AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile);
+                clip.open(ais);
+            
+            
+            
+            
+            
+            
+            
 
                 GUI gui = new GUI();
                 gui.setVisible(true);
@@ -144,43 +165,122 @@ public class POETradeWatch {
                 result = Integer.toString(search(gui.jTextField1.getText()));
                 int oldFound = Integer.parseInt(gui.jButton1.getText());
                 if(Integer.parseInt(result) > oldFound){
-                    Toolkit.getDefaultToolkit().beep();
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
                 }
                 gui.jButton1.setText(result);   
                 
+                result = Integer.toString(search(gui.jTextField3.getText()));
+                oldFound = Integer.parseInt(gui.jButton2.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton2.setText(result); 
+                                
+                result = Integer.toString(search(gui.jTextField5.getText()));
+                oldFound = Integer.parseInt(gui.jButton3.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton3.setText(result); 
                 
-                                result = Integer.toString(search(gui.jTextField3.getText()));
-                gui.jButton2.setText(result);
+                                
+                result = Integer.toString(search(gui.jTextField7.getText()));
+                oldFound = Integer.parseInt(gui.jButton4.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton4.setText(result); 
                 
-                                result = Integer.toString(search(gui.jTextField5.getText()));
-                gui.jButton3.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField7.getText()));
-                gui.jButton4.setText(result);
+                result = Integer.toString(search(gui.jTextField9.getText()));
+                oldFound = Integer.parseInt(gui.jButton5.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton5.setText(result);                 
                 
-                                result = Integer.toString(search(gui.jTextField9.getText()));
-                gui.jButton5.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField11.getText()));
-                gui.jButton6.setText(result);
+                result = Integer.toString(search(gui.jTextField11.getText()));
+                oldFound = Integer.parseInt(gui.jButton6.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton6.setText(result);                 
                 
-                                result = Integer.toString(search(gui.jTextField13.getText()));
-                gui.jButton7.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField15.getText()));
-                gui.jButton8.setText(result);
+                result = Integer.toString(search(gui.jTextField13.getText()));
+                oldFound = Integer.parseInt(gui.jButton7.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton7.setText(result);  
                 
-                                result = Integer.toString(search(gui.jTextField17.getText()));
-                gui.jButton9.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField19.getText()));
-                gui.jButton10.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField21.getText()));
-                gui.jButton11.setText(result);
                 
-                                result = Integer.toString(search(gui.jTextField23.getText()));
-                gui.jButton12.setText(result);
+                result = Integer.toString(search(gui.jTextField15.getText()));
+                oldFound = Integer.parseInt(gui.jButton8.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton8.setText(result);  
+                
+                
+                result = Integer.toString(search(gui.jTextField17.getText()));
+                oldFound = Integer.parseInt(gui.jButton9.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton9.setText(result);                  
+                
+                                
+                result = Integer.toString(search(gui.jTextField19.getText()));
+                oldFound = Integer.parseInt(gui.jButton10.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton10.setText(result); 
+                
+                
+                                               
+                result = Integer.toString(search(gui.jTextField21.getText()));
+                oldFound = Integer.parseInt(gui.jButton11.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton11.setText(result); 
+                
+                                                               
+                result = Integer.toString(search(gui.jTextField23.getText()));
+                oldFound = Integer.parseInt(gui.jButton12.getText());
+                if(Integer.parseInt(result) > oldFound){
+                    clip.stop();
+                    clip.setFramePosition(0);
+                    clip.start();
+                }
+                gui.jButton12.setText(result); 
                 
                 }
 
@@ -215,7 +315,10 @@ public class POETradeWatch {
                                 
                                     //System.out.println(split.length);
                                     //System.out.println(split[4]);  
-                                    found = Integer.parseInt(split[4].substring(1));
+                                    if(split[4].length() > 3)
+                                        found = 99;
+                                    else
+                                        found = Integer.parseInt(split[4].substring(1));
                                 }
 			}
 			br.close();
