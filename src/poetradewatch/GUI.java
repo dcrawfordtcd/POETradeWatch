@@ -10,11 +10,18 @@ import java.awt.Desktop;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -77,14 +84,17 @@ public class GUI extends javax.swing.JFrame {
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
+        jTextField25 = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTextField1.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField1InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +116,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField3.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField3InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
@@ -131,10 +141,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField5.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField5InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
@@ -156,10 +166,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField7.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField7InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -181,10 +191,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField9.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField9InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -206,10 +216,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField11.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField11InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
@@ -231,10 +241,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField13.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField13InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
@@ -256,10 +266,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField15.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField15InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
@@ -281,10 +291,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField17.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField17InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField17.addActionListener(new java.awt.event.ActionListener() {
@@ -306,10 +316,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField19.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField19InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField19.addActionListener(new java.awt.event.ActionListener() {
@@ -331,10 +341,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField21.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField21InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField21.addActionListener(new java.awt.event.ActionListener() {
@@ -356,10 +366,10 @@ public class GUI extends javax.swing.JFrame {
         });
 
         jTextField23.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 jTextField23InputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         jTextField23.addActionListener(new java.awt.event.ActionListener() {
@@ -464,6 +474,27 @@ public class GUI extends javax.swing.JFrame {
             }
         });
 
+        jTextField25.setText("saved.txt");
+        jTextField25.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField25ActionPerformed(evt);
+            }
+        });
+
+        jButton13.setText("Save");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setText("Load");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -472,87 +503,97 @@ public class GUI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton4))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton5))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton6))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton7))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton8))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton9))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton10))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTextField22, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton11))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton14)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton12))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton12)
+                            .addComponent(jButton13)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(jButton2))))
                 .addGap(12, 12, 12))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -608,7 +649,12 @@ public class GUI extends javax.swing.JFrame {
                     .addComponent(jTextField23, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField24, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton12))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField25, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton13)
+                    .addComponent(jButton14))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -854,6 +900,143 @@ public class GUI extends javax.swing.JFrame {
         openInBrowser(jTextField23.getText());
     }//GEN-LAST:event_jButton12ActionPerformed
 
+    private void jTextField25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField25ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField25ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        String text = "Hello world";
+        BufferedWriter output = null;
+        try {
+            File file = new File(jTextField25.getText());
+            output = new BufferedWriter(new FileWriter(file));
+            output.write(this.jTextField1.getText() + " " + this.jTextField2.getText() + '\r' + '\n');
+            output.write(this.jTextField3.getText() + " " + this.jTextField4.getText() + '\r' + '\n');
+            output.write(this.jTextField5.getText() + " " + this.jTextField6.getText() + '\r' + '\n');
+            output.write(this.jTextField7.getText() + " " + this.jTextField8.getText() + '\r' + '\n');
+            output.write(this.jTextField9.getText() + " " + this.jTextField10.getText() + '\r' + '\n');
+            output.write(this.jTextField11.getText() + " " + this.jTextField12.getText() + '\r' + '\n');
+            output.write(this.jTextField13.getText() + " " + this.jTextField14.getText() + '\r' + '\n');
+            output.write(this.jTextField15.getText() + " " + this.jTextField16.getText() + '\r' + '\n');
+            output.write(this.jTextField17.getText() + " " + this.jTextField18.getText() + '\r' + '\n');
+            output.write(this.jTextField19.getText() + " " + this.jTextField20.getText() + '\r' + '\n');
+            output.write(this.jTextField21.getText() + " " + this.jTextField22.getText() + '\r' + '\n');
+            output.write(this.jTextField23.getText() + " " + this.jTextField24.getText() + '\r' + '\n');
+            
+        } catch ( IOException e ) {
+            e.printStackTrace();
+        } finally {
+            if ( output != null ) try {
+                output.close();
+            } catch (IOException ex) {
+                Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+       
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+       
+        try {
+            File saved = new File(this.jTextField25.getText());
+            Scanner scanner = new Scanner(saved);
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField1.setText(bits[0]);
+                this.jTextField2.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField3.setText(bits[0]);
+                this.jTextField4.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField5.setText(bits[0]);
+                this.jTextField6.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField7.setText(bits[0]);
+                this.jTextField8.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField9.setText(bits[0]);
+                this.jTextField10.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField11.setText(bits[0]);
+                this.jTextField12.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField13.setText(bits[0]);
+                this.jTextField14.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField15.setText(bits[0]);
+                this.jTextField16.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField5.setText(bits[0]);
+                this.jTextField6.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField17.setText(bits[0]);
+                this.jTextField18.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField19.setText(bits[0]);
+                this.jTextField20.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField21.setText(bits[0]);
+                this.jTextField22.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+            
+            if(scanner.hasNext()){
+                String line = scanner.nextLine();
+                String[] bits = line.split(" ");
+                this.jTextField23.setText(bits[0]);
+                this.jTextField24.setText(line.substring((bits[0].length() + 1), line.length()));
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GUI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                                    
+                            
+    }//GEN-LAST:event_jButton14ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -919,6 +1102,8 @@ public class GUI extends javax.swing.JFrame {
     public javax.swing.JButton jButton10;
     public javax.swing.JButton jButton11;
     public javax.swing.JButton jButton12;
+    public javax.swing.JButton jButton13;
+    public javax.swing.JButton jButton14;
     public javax.swing.JButton jButton2;
     public javax.swing.JButton jButton3;
     public javax.swing.JButton jButton4;
@@ -944,6 +1129,7 @@ public class GUI extends javax.swing.JFrame {
     public javax.swing.JTextField jTextField22;
     public javax.swing.JTextField jTextField23;
     public javax.swing.JTextField jTextField24;
+    public javax.swing.JTextField jTextField25;
     public javax.swing.JTextField jTextField3;
     public javax.swing.JTextField jTextField4;
     public javax.swing.JTextField jTextField5;
@@ -952,4 +1138,10 @@ public class GUI extends javax.swing.JFrame {
     public javax.swing.JTextField jTextField8;
     public javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
+
+    private static class Writer {
+
+        public Writer() {
+        }
+    }
 }
