@@ -21,6 +21,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -33,6 +35,10 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author Dan
  */
 public class TradeWatchImproved extends javax.swing.JFrame {
+    //Create a file chooser
+    public static final JFileChooser fileChooser = new JFileChooser();
+
+
     final static int MAX_SEARCHES = 8;
     static Clip clip;
     static String[] hashes = new String[MAX_SEARCHES];
@@ -493,8 +499,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
 
-        descriptions[0] = jTextField2.getText();
-        
+        descriptions[0] = jTextField2.getText();       
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -519,7 +524,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[1]);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -541,7 +546,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6PropertyChange
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+       openInBrowser(hashes[2]);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
@@ -550,7 +555,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField7ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[3]);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField8InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField8InputMethodTextChanged
@@ -585,7 +590,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField10ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[4]);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jTextField11InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField11InputMethodTextChanged
@@ -607,7 +612,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[5]);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
@@ -629,7 +634,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField14PropertyChange
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[6]);
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jTextField15InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_jTextField15InputMethodTextChanged
@@ -651,7 +656,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField16ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        openInBrowser(hashes[7]);
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
@@ -704,8 +709,14 @@ public class TradeWatchImproved extends javax.swing.JFrame {
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         PrintWriter writer;
+        fileChooser.showSaveDialog(null);            
+
+        String path=fileChooser.getSelectedFile().getAbsolutePath();
+        if(!path.endsWith(".txt"))
+            path += ".txt";
+
         try {
-            writer = new PrintWriter("saved.txt", "UTF-8");
+            writer = new PrintWriter(path, "UTF-8");
             for(int i = 0; i < MAX_SEARCHES; i++)
                 writer.println(hashes[i] + " " + descriptions[i]);
             writer.close();
@@ -714,27 +725,41 @@ public class TradeWatchImproved extends javax.swing.JFrame {
         } catch (UnsupportedEncodingException ex) {
             Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+            
+            
+
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
     static void loadFromFile() {
              
+            //In response to a button click:
+           
+            File saved = null;
 
-            File saved = new File("saved.txt");
-            Scanner scanner = null;
-        try {
-            scanner = new Scanner(saved);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            int i = 0;
-            while(scanner.hasNext() && i < MAX_SEARCHES){
-                String line = scanner.nextLine();
-                String[] bits = line.split(" ");
-                hashes[i]= bits[0];
-                descriptions[i]= line.substring((bits[0].length() + 1), line.length());
-                i++;
+            int returnVal = fileChooser.showOpenDialog(null);            
+            if(returnVal == JFileChooser.APPROVE_OPTION) {
+                saved = new File(fileChooser.getSelectedFile().getName());
             }
+            
+            
+            Scanner scanner = null;
+            if(saved != null)
+                try {
+                scanner = new Scanner(saved);
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            int i = 0;
+            if(saved != null)
+                while(scanner.hasNext() && i < MAX_SEARCHES){
+                    String line = scanner.nextLine();
+                    String[] bits = line.split(" ");
+                    hashes[i]= bits[0];
+                    descriptions[i]= line.substring((bits[0].length() + 1), line.length());
+                    i++;
+                }
     }
     
     static void openInBrowser(String hash){
@@ -762,56 +787,6 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }
     
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
-
-        //set a proxy
-        System.setProperty("http.proxyHost", "185.19.232.110");
-        System.setProperty("http.proxyPort", "8080");
-        
-        
-        clip = AudioSystem.getClip();
-        // getAudioInputStream() also accepts a File or InputStream
-        File audioFile = new File("alert.wav");
-        AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile);
-        clip.open(ais);
-        
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TradeWatchImproved().setVisible(true);
-            }
-        });
-        
-        
-        
-        
-    }
     public  void startSearches(){
 
         Thread one = new Thread() {
@@ -911,6 +886,60 @@ public class TradeWatchImproved extends javax.swing.JFrame {
       
             }
         }
+    
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
+
+        //set a proxy
+        System.setProperty("http.proxyHost", "185.19.232.110");
+        System.setProperty("http.proxyPort", "8080");
+        
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "txt files", "txt");
+        fileChooser.setFileFilter(filter);
+        
+        clip = AudioSystem.getClip();
+        // getAudioInputStream() also accepts a File or InputStream
+        File audioFile = new File("alert.wav");
+        AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile);
+        clip.open(ais);
+        
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TradeWatchImproved.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new TradeWatchImproved().setVisible(true);
+            }
+        });
+        
+        
+        
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private static javax.swing.JButton jButton1;
