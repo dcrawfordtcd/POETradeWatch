@@ -365,20 +365,8 @@ public class TradeWatchImproved extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
@@ -420,9 +408,26 @@ public class TradeWatchImproved extends javax.swing.JFrame {
                         .addGap(117, 117, 117)
                         .addComponent(jButton10)
                         .addGap(7, 7, 7)
-                        .addComponent(jButton11)))
+                        .addComponent(jButton11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(21, 21, 21))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField1, jTextField11, jTextField14, jTextField15, jTextField3, jTextField6, jTextField8, jTextField9});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField10, jTextField12, jTextField13, jTextField16, jTextField2, jTextField4, jTextField5, jTextField7});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -698,24 +703,14 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        loadFromFile();
-        jTextField1.setText(hashes[0]);
-        jTextField3.setText(hashes[1]);
-        jTextField6.setText(hashes[2]);
-        jTextField8.setText(hashes[3]);
-        jTextField9.setText(hashes[4]);
-        jTextField11.setText(hashes[5]);
-        jTextField14.setText(hashes[6]);
-        jTextField15.setText(hashes[7]);
-        
-        jTextField2.setText(descriptions[0]);
-        jTextField4.setText(descriptions[1]);
-        jTextField5.setText(descriptions[2]);
-        jTextField7.setText(descriptions[3]);
-        jTextField10.setText(descriptions[4]);
-        jTextField12.setText(descriptions[5]);
-        jTextField13.setText(descriptions[6]);
-        jTextField16.setText(descriptions[7]);
+
+        File saved = null;
+
+        int returnVal = fileChooser.showOpenDialog(null);            
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            saved = new File(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+        loadFromFile(saved);
         
     }//GEN-LAST:event_jButton11ActionPerformed
 
@@ -744,17 +739,9 @@ public class TradeWatchImproved extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton10ActionPerformed
 
-    static void loadFromFile() {
+    static void loadFromFile(File saved) {
              
-            //In response to a button click:           
-            File saved = null;
 
-            int returnVal = fileChooser.showOpenDialog(null);            
-            if(returnVal == JFileChooser.APPROVE_OPTION) {
-                saved = new File(fileChooser.getSelectedFile().getAbsolutePath());
-            }
-            
-            
             Scanner scanner = null;
             if(saved != null)
                 try {
@@ -771,6 +758,24 @@ public class TradeWatchImproved extends javax.swing.JFrame {
                     descriptions[i]= line.substring((bits[0].length() + 1), line.length());
                     i++;
                 }
+            
+        jTextField1.setText(hashes[0]);
+        jTextField3.setText(hashes[1]);
+        jTextField6.setText(hashes[2]);
+        jTextField8.setText(hashes[3]);
+        jTextField9.setText(hashes[4]);
+        jTextField11.setText(hashes[5]);
+        jTextField14.setText(hashes[6]);
+        jTextField15.setText(hashes[7]);
+        
+        jTextField2.setText(descriptions[0]);
+        jTextField4.setText(descriptions[1]);
+        jTextField5.setText(descriptions[2]);
+        jTextField7.setText(descriptions[3]);
+        jTextField10.setText(descriptions[4]);
+        jTextField12.setText(descriptions[5]);
+        jTextField13.setText(descriptions[6]);
+        jTextField16.setText(descriptions[7]);
     }
     
     static void openInBrowser(String hash){
@@ -808,7 +813,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
                 search(hashes[i], i);              
             }
                 try {
-                    this.sleep(30000);
+                    this.sleep(300000);
                 } catch (InterruptedException ex) {
                     Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -911,8 +916,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
-        //set a proxy (necessary for me but not end users!)
-        
+        //set a proxy (necessary for me but not end users!)        
         System.setProperty("http.proxyHost", "194.83.240.11");
         System.setProperty("http.proxyPort", "8080");
         
@@ -955,6 +959,8 @@ public class TradeWatchImproved extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TradeWatchImproved().setVisible(true);
+                File saved = new File("lastSearched.txt");
+                loadFromFile(saved);
             }
         });
         
@@ -975,21 +981,21 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     private static javax.swing.JButton jButton7;
     private static javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private static javax.swing.JTextField jTextField1;
+    private static javax.swing.JTextField jTextField10;
+    private static javax.swing.JTextField jTextField11;
+    private static javax.swing.JTextField jTextField12;
+    private static javax.swing.JTextField jTextField13;
+    private static javax.swing.JTextField jTextField14;
+    private static javax.swing.JTextField jTextField15;
+    private static javax.swing.JTextField jTextField16;
+    private static javax.swing.JTextField jTextField2;
+    private static javax.swing.JTextField jTextField3;
+    private static javax.swing.JTextField jTextField4;
+    private static javax.swing.JTextField jTextField5;
+    private static javax.swing.JTextField jTextField6;
+    private static javax.swing.JTextField jTextField7;
+    private static javax.swing.JTextField jTextField8;
+    private static javax.swing.JTextField jTextField9;
     // End of variables declaration//GEN-END:variables
 }
