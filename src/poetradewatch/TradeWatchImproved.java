@@ -38,7 +38,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     //Create a file chooser
     public static final JFileChooser fileChooser = new JFileChooser();
 
-
+    public static String lastSeaches = "";
     final static int MAX_SEARCHES = 8;
     static Clip clip;
     static String[] hashes = new String[MAX_SEARCHES];
@@ -679,7 +679,19 @@ public class TradeWatchImproved extends javax.swing.JFrame {
         descriptions[6] = jTextField13.getText();
         descriptions[7] = jTextField16.getText();
         
-
+        PrintWriter writer;        
+        String path="lastSearched.txt";
+       try {
+            writer = new PrintWriter(path, "UTF-8");
+            for(int i = 0; i < MAX_SEARCHES; i++)
+                writer.println(hashes[i] + " " + descriptions[i]);
+            writer.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         startSearches();
 
         
@@ -734,13 +746,12 @@ public class TradeWatchImproved extends javax.swing.JFrame {
 
     static void loadFromFile() {
              
-            //In response to a button click:
-           
+            //In response to a button click:           
             File saved = null;
 
             int returnVal = fileChooser.showOpenDialog(null);            
             if(returnVal == JFileChooser.APPROVE_OPTION) {
-                saved = new File(fileChooser.getSelectedFile().getName());
+                saved = new File(fileChooser.getSelectedFile().getAbsolutePath());
             }
             
             
@@ -794,8 +805,13 @@ public class TradeWatchImproved extends javax.swing.JFrame {
             while(true){
                     System.out.println("Searching...");
                 for(int i = 0; i < MAX_SEARCHES;i++){
-                search(hashes[i], i);
+                search(hashes[i], i);              
             }
+                try {
+                    this.sleep(30000);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(TradeWatchImproved.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         }  
     };
@@ -806,16 +822,13 @@ public class TradeWatchImproved extends javax.swing.JFrame {
     }
     	public static int search(String hash, int searchNumber){
 		URL url;
-                int tmp = currentFound[searchNumber];
 		int found = 0;
                 if(hash.length() > 4)
 		try {
 			// get URL content
 
 			String a = hash;
-                        //a = "http://boomproxy.com/browse.php?u=http%3A%2F%2Fpoe.trade%2Fsearch%2F" + a + "&b=0&f=norefer";
-                        //http://www.proxybrowser.org/browse.php?u=http%3A%2F%2Fpoe.trade%2Fsearch%2Fomaaotarokutos&b=0&f=norefer
-                        
+
 			a = "http://poe.trade/search/" + a;
 			url = new URL(a);
 			URLConnection conn = url.openConnection();
@@ -825,7 +838,6 @@ public class TradeWatchImproved extends javax.swing.JFrame {
 					new InputStreamReader(conn.getInputStream()));
 
 			
-			int resultsCount = 0;
 			String inputLine;		
 			while ((inputLine = br.readLine()) != null && !inputLine.contains("protip")) {
 				//System.out.println(inputLine);
@@ -841,24 +853,31 @@ public class TradeWatchImproved extends javax.swing.JFrame {
                                         found = 99;
                                     else
                                         found = Integer.parseInt(split[4].substring(1));
+
                                 }
 			}
 			br.close();
 
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+                        found = currentFound[searchNumber];
 		} catch (IOException e) {
 			e.printStackTrace();
+                        found = currentFound[searchNumber];
 		}
-
+                //for debugging
+                //System.out.println("Search number = " + searchNumber + " found = " + found + " currentFound = " + currentFound[searchNumber]);
                 if(found > currentFound[searchNumber])
+                {
                     playAlert(clip);
+                    System.out.println("Played Alert");
+                }
                 
                 currentFound[searchNumber] = found;
                 updateButton(searchNumber, found);
 		return found;
 	}
-        
+  
         public static void playAlert(Clip clip){
                     clip.stop();
                     clip.setFramePosition(0);
@@ -892,9 +911,11 @@ public class TradeWatchImproved extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
-        //set a proxy
-        System.setProperty("http.proxyHost", "185.19.232.110");
+        //set a proxy (necessary for me but not end users!)
+        
+        System.setProperty("http.proxyHost", "194.83.240.11");
         System.setProperty("http.proxyPort", "8080");
+        
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "txt files", "txt");
@@ -905,6 +926,7 @@ public class TradeWatchImproved extends javax.swing.JFrame {
         File audioFile = new File("alert.wav");
         AudioInputStream ais = AudioSystem.getAudioInputStream(audioFile);
         clip.open(ais);
+
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
