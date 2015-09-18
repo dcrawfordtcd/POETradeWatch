@@ -916,10 +916,10 @@ public class TradeWatchImproved extends javax.swing.JFrame {
      */
     public static void main(String args[]) throws LineUnavailableException, UnsupportedAudioFileException, IOException {
 
-        //set a proxy (necessary for me but not end users!)        
+        /*    proxy should be unnecessary for legit users!  
         System.setProperty("http.proxyHost", "194.83.240.11");
         System.setProperty("http.proxyPort", "8080");
-        
+        */
         
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "txt files", "txt");
